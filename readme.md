@@ -1,5 +1,5 @@
 # WellAI
-![Logo](https://github.com/GaLenN3228/wellai_mobile/blob/main/assets/logo.png?raw=true)
+![Logo](https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/logo.png?raw=true)
 
 ## About app
 
