@@ -18,3 +18,40 @@ Web app: Vue.js
 - Authorization with google or apple [example]()
 - Attach to doctor or nurse in calendar [example]()
 - Profile editing [expample]()
+
+## Chat with nurse or doctor
+
+Chat with nurse or doctor implementation 
+
+For chat system we use Web socket for connection and handling messages. For WebSocket connection we use [socket_io_client](https://pub.dev/packages/socket_io_client). The connection example provided here:
+
+```bash
+    _socket = socket_io.io(
+        baseUrl,
+        <String, dynamic>{
+          'transports': ['websocket'],
+          'reconnection': true,
+          'timeout': 20000,
+          'forceNew': true,
+          'auth': {'token': 'Bearer ${_tokensRepository.accessToken}'},
+        },
+      );
+      _socket.onConnectError((data) {
+        log('connect error', name: _tag);
+      });
+      _socket.on('error', (data) async {
+        log(data.toString(), name: _tag);
+      });
+      _socket.onDisconnect((data) {
+        log('disconnect', name: _tag);
+      });
+      _socket.onReconnect((data) {
+        log('reconnect', name: _tag);
+        _initWebRTC();
+      });
+      _socket.onConnect((data) {
+        networkInfo.updateConnection(true);
+        log('onConnect', name: _tag);
+        _initWebRTC();
+      });
+```
