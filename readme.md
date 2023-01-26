@@ -185,3 +185,7 @@ All work from SendMessageEvent event, when we get response from server:
     }
   }
 ```
+
+<p align="center">
+  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/assistant.gif" alt="animated" />
+</p>
