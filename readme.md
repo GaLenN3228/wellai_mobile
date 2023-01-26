@@ -99,3 +99,31 @@ and _onEvent fucntion:
     });
   }
 ```
+
+Because chat bloc have complicated structer, we provide only inmplementation, in this example you can find connection to chat, and listener method, whitch listen events from previous part: 
+
+```dart
+  NurseChatBloc(
+    this._chatWrapper,
+    this._viewModel,
+    this._repository,
+    this._userStore,
+    this._networkInfo,
+  ) : super(LoadingNurseChatState()) {
+    on<SendMessageEvent>(_onSendMessageEvent);
+    on<GetMessageEvent>(_onGetMessageEvent);
+    on<InitialNurseChatEvent>(_onInitialNurseChatEvent);
+    on<ReconnectNurseChatEvent>(_onReconnectNurseChatEvent);
+    _messagesSub = _chatWrapper.messagesStream.where((event) {
+      final ev = event as WsChatMessageResponse;
+      return ev.chatId == _chatId;
+    }).listen((event) {
+      add(GetMessageEvent(event as WsChatMessageResponse));
+    });
+    _networkConnectionSub = _networkInfo.reconnectionStream.listen((event) {
+      if (event == true) {
+        add(ReconnectNurseChatEvent());
+      }
+    });
+  }
+```
