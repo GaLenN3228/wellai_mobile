@@ -127,3 +127,7 @@ Because chat bloc have complicated structer, we provide only inmplementation, in
     });
   }
 ```
+
+<p align="center">
+  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/chat.gif" alt="animated" />
+</p>
