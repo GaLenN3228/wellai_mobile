@@ -131,3 +131,57 @@ Because chat bloc have complicated structer, we provide only inmplementation, in
 <p align="center">
   <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/chat.gif" alt="animated" />
 </p>
+
+## Virtual assistant to help with diagnoses
+
+Virtual assistant is an AI, which is learned by programmers from the USA and provided for us. This AI is helping us to give the user more common diagnoses depending on a few questions. All questions from assistant are playing from phone speakers and user can answer from phone microphone.
+
+Logic for assistant preaty the same as chat.
+
+```dart
+    class AssistantBloc extends Bloc<AssistantEvent, AssistantState> {
+    AssistantBloc(
+        this._repository,
+        this._lang,
+        this._assistantViewModel,
+        this._userStore,
+        this._chatMessageFinalizer,
+        this._audioPlayer,
+        this._settingsManager,
+        this._screenUpdateManager,
+        this._sessionId,
+  ) : super(InitialDataState()) {
+    on<SuccessFillProfileAssistantEvent>(_onSuccessFillProfileAssistantEvent);
+    on<SendMessageEvent>(_onSendMessageEvent);
+    on<StartOverAssisEvent>(_onStartOverAssisEvent);
+    on<StopSessionAssisEvent>(_onStopSessionAssisEvent);
+  }
+```
+
+All work from SendMessageEvent event, when we get response from server: 
+
+```dart
+    void _onSendMessageEvent(SendMessageEvent event, Emitter<AssistantState> emit) async {
+    if (event.message.trim().isEmpty) return;
+    _assistantViewModel.changeAssistantAnimatedState(true);
+
+    final currentAssistStage = assistantStage;
+    _assistantViewModel.changeAssistWidgetsState(true);
+
+    if (currentAssistStage is AssisStageInit) {
+      await _handleInitStage(event, currentAssistStage, emit);
+    }
+
+    if (currentAssistStage is AssisStageClarificationOfSymptom) {
+      _handleClarificationOfSymptomStage(event, currentAssistStage, emit);
+    }
+
+    if (currentAssistStage is AssisStageAskSymptoms) {
+      await _handleAskSymptomsStage(event, currentAssistStage, emit);
+    }
+
+    if (currentAssistStage is AssisStageWaitingForRetry) {
+      await _handleWaitingForRetry(currentAssistStage, emit, event);
+    }
+  }
+```
