@@ -25,7 +25,7 @@ Chat with nurse or doctor implementation
 
 For chat system we use Web socket for connection and handling messages. For WebSocket connection we use [socket_io_client](https://pub.dev/packages/socket_io_client). The connection example provided here:
 
-```bash
+```dart
     _socket = socket_io.io(
         baseUrl,
         <String, dynamic>{
