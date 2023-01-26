@@ -3,9 +3,18 @@
 
 ## About app
 
-COLOS is an application for tracking your shipments. Also, different roles could work in this application, such as a dispatch operator, a regular user, and a project client. The functionality for each role has been limited or expanded depending on the role. Each shipment can be tracked on a map, with an accurate calculation of its location and a history of movement
+WellAI is an app for patients and doctors from Bent Tree Family. This is one of the best clinics in Frisco and North Dallas. The app contains a lot of features which profile in the "Features" section. We split doctor and patient roles into two apps because all functions are specified for role, it will be hard and complicated to hold all roles in one app. Because of that, app for doctor contains nurse and doctor role. At the same time doctor can be a patient with the same email. 
 
 ## 🛠 App languages
 Mobile app: Dart and flutter<br />
-Backend: php<br />
+Backend: Go<br />
 Web app: Vue.js
+
+## Features
+
+- Chat with nurse or doctor  [example]()
+- Virtual assistant to help with diagnoses   [example]()
+- WebRTS calling to nurse or doctor  [example]()
+- Authorization with google or apple [example]()
+- Attach to doctor or nurse in calendar [example]()
+- Profile editing [expample]()
