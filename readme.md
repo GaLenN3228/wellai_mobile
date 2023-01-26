@@ -55,3 +55,47 @@ For chat system we use Web socket for connection and handling messages. For WebS
         _initWebRTC();
       });
 ```
+
+Main event from socket handler: 
+
+```dart
+     void _initWebRTC() {
+    _onEvent(WsCancelResponse.name);
+    _onEvent(WsCallResponse.name);
+    _onEvent(WsMediaOfferResponse.name);
+    _onEvent(WsMediaAnswerResponse.name);
+    _onEvent(WsApproveResponse.name);
+
+    _onEvent(WsChatSendedMessageResponse.name);
+    _onEvent(WsJoinChatResponse.name);
+    _onEvent(WSLeaveChatResponse.name);
+    _onEvent(WsRemotePeerIceCandidateResponse.name, checkFunction: (data) {
+      return data['candidate'] != null;
+    });
+    _onEvent(WsChatMessageResponse.name);
+    for (var event in WSScreenUpdateResponse.subValues) {
+      _onEvent(event);
+      emit(event, SimpleEncodable({}));
+    }
+  }
+```
+
+and _onEvent fucntion: 
+
+```dart
+    _onEvent(
+        String event, {
+        bool Function(dynamic)? checkFunction,
+        VoidCallback? customCallBack,
+    }) {
+        _socket.off(event);
+        _socket.on(event, (data) async {
+        log('SocketEvent: ' + event);
+         log('Event data: ${jsonEncode(data)}');
+        if (checkFunction?.call(data) ?? true) {
+            _eventStreamController.sink.add(WsResponse.fromMap(event, data));
+            customCallBack?.call();
+        }
+    });
+  }
+```
