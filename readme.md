@@ -459,5 +459,5 @@ By tapping on date or time, we send request to server to get doctors/nurses list
 ```
 
 <p align="center">
-  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/calendar.gif" alt="animated" width="250" height="500"/>
+  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/calendar.gif" alt="animated" width="300" height="600"/>
 </p>
