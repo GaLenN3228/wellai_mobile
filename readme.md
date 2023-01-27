@@ -461,3 +461,34 @@ By tapping on date or time, we send request to server to get doctors/nurses list
 <p align="center">
   <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/calendar.gif" alt="animated" width="300" height="600"/>
 </p>
+
+
+## Profile editing 
+
+The most common think in the app, like in 99% of all apps. It's user profile editing. All patients able to change their email, phone number and more. Here is a simple event in User BLoC. Whitch send request to server, and change user data.
+
+```dart
+  FutureOr<void> _buildDataChangesProfileEvent(
+      DataChangesProfileEvent event, Emitter<EditProfileScreenState> emit) async {
+    emit(LoadingEditProfileState(true));
+    try {
+      await _globalRepository.createEditProfile(
+          event.profile, event.imagePath, event.isRemoveAvatar);
+      final userInfo = await _globalRepository.getUserInfo();
+      _userStore.upsertUser(userInfo);
+      _hiveRepository.saveUserAvatar(
+        userInfo.profile?.image?.name,
+        userInfo.profile?.image?.blur,
+      );
+      emit(LoadingEditProfileState(false));
+      emit(SuccessEditProfileScreenState());
+    } catch (ex, stackTrace) {
+      emit(LoadingEditProfileState(false));
+      emit(ErrorEditProfileScreenState(ex, stackTrace));
+    }
+  }
+```
+
+<p align="center">
+  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/profile_editing.gif" alt="animated" width="300" height="600"/>
+</p>
