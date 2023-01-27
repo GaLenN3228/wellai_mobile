@@ -189,3 +189,143 @@ All work from SendMessageEvent event, when we get response from server:
 <p align="center">
   <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/assistant.gif" alt="animated" />
 </p>
+
+
+## WebRTS calling to nurse or doctor
+
+With calling we have the same solution like with chat. We connection to Web socket whitch provide us events whitch we handling in BLoC.
+All events and their handlign are availible in [example]()
+
+```dart 
+_wsSubscription = _stream.listen((event) {
+      if (event is WsCancelResponse) {
+        _onCancelEvent(event);
+        return;
+      }
+      if (event is WsCallResponse) {
+        _onCallEvent(event);
+        return;
+      }
+      if (event is WsMediaOfferResponse) {
+        _onMediaOfferEvent(event);
+        return;
+      }
+      if (event is WsMediaAnswerResponse) {
+        _onMediaAnswerResponse(event);
+        return;
+      }
+      if (event is WsRemotePeerIceCandidateResponse) {
+        _onRemotePeerIceCandidateEvent(event);
+        return;
+      }
+      if (event is WsApproveResponse) {
+        _onApproveEvent(event);
+      }
+    });
+```
+
+Call event handling 
+
+```dart 
+ Future<void> _onCallEvent(WsCallResponse event) async {
+    room = event.room;
+    var constraints = {
+      "audio": true,
+      "video": {'facingMode': 'user', 'optional': []}
+    };
+    try {
+      myStream = await navigator.mediaDevices.getUserMedia(constraints);
+      _callStreamController.sink.add(
+          CallModel(CallStoreState.incomingCall, callerName: event.callerName));
+    } catch (e) {
+      _callStreamController.sink
+          .add(CallModel(CallStoreState.permissionNotGranted));
+      final miceStatus = await Permission.microphone.status;
+      final cameraStatus = await Permission.camera.status;
+      if (miceStatus.isDenied || cameraStatus.isDenied) {
+        _sendPermissionDenied(event.room);
+      }
+    }
+  }
+```
+
+
+## Authorization with google or apple
+
+Authorization with google or apple are working with firebase. All implimentations are preaty simple, we create wrappers for google and apple.
+
+Google auth wrapper:
+
+```dart
+class GoogleSignInWrapper {
+  final List<String> scopes;
+
+  GoogleSignInWrapper({required this.scopes});
+
+  Future<String?> getGoogleIdToken() async {
+    final googleAccount = await GoogleSignIn(scopes: scopes).signIn();
+    final auth = await googleAccount?.authentication;
+    return auth?.idToken;
+  }
+
+  Future<void> logoutWithGoogle() async {
+    await GoogleSignIn().disconnect();
+  }
+}
+```
+
+Apple wrapper: 
+
+```dart
+class SignInWithAppleWrapper {
+  final List<AppleIDAuthorizationScopes> scopes;
+
+  SignInWithAppleWrapper({required this.scopes});
+
+  Future<AuthorizationCredentialAppleID>? getAppleIDCredential() async {
+    return SignInWithApple.getAppleIDCredential(scopes: scopes);
+  }
+}
+```
+
+For each platform we create events in BLoC: 
+
+```dart 
+  void _onSignInWithGoogleEvent(
+      SignInWithGoogleEvent event, Emitter<SignInState> emit) async {
+    try {
+      final googleAccount = await _googleSignIn.getGoogleIdToken();
+      if (googleAccount != null) {
+        final token = await _globalRepository.loginWithGoogle(googleAccount,
+            isLogin: event.isLogin);
+        await _googleSignIn.logoutWithGoogle();
+        emit(SuccessSignInState(token));
+      }
+    } catch (e, stackTrace) {
+      emit(ErrorSignInState(e, stackTrace));
+      await _googleSignIn.logoutWithGoogle();
+    }
+  }
+```
+
+```dart 
+ void _onSignUpWithEmailEvent(
+      SignUpWithEmailEvent event, Emitter<SignInState> emit) async {
+    try {
+      emit(LoadingSignInState(true));
+      final token = await _globalRepository.signUpWithEmail(
+          DTOSignUpWithEmailRequest(
+              email: event.mail, password: event.password, invite: ""));
+      emit(LoadingSignInState(false));
+      emit(SuccessSignInState(token, email: event.mail));
+    } catch (e, stackTrace) {
+      emit(LoadingSignInState(false));
+      emit(ErrorSignInState(e, stackTrace));
+    }
+  }
+```
+
+
+<p align="center">
+  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/google_auth.gif" alt="animated" />
+</p>
