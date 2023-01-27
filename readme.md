@@ -129,7 +129,7 @@ Because chat bloc have complicated structer, we provide only inmplementation, in
 ```
 
 <p align="center">
-  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/chat.gif" alt="animated" />
+  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/chat.gif" alt="animated" width="300" height="600"/>
 </p>
 
 ## Virtual assistant to help with diagnoses
@@ -187,7 +187,7 @@ All work from SendMessageEvent event, when we get response from server:
 ```
 
 <p align="center">
-  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/assistant.gif" alt="animated" />
+  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/assistant.gif" alt="animated" width="300" height="600"/>
 </p>
 
 
@@ -327,7 +327,7 @@ For each platform we create events in BLoC:
 
 
 <p align="center">
-  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/google_auth.gif" alt="animated" />
+  <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/google_auth.gif" alt="animated" width="300" height="600"/>
 </p>
 
 
