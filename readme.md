@@ -12,12 +12,12 @@ Web app: Vue.js
 
 ## Features
 
-- Chat with nurse or doctor  [example]()
-- Virtual assistant to help with diagnoses   [example]()
-- WebRTS calling to nurse or doctor  [example]()
-- Authorization with google or apple [example]()
-- Attach to doctor or nurse in calendar [example]()
-- Profile editing [expample]()
+- Chat with nurse or doctor  [example](https://github.com/GaLenN3228/wellai_mobile/tree/master/examples/chat)
+- Virtual assistant to help with diagnoses   [example](https://github.com/GaLenN3228/wellai_mobile/tree/master/examples/assistant)
+- WebRTS calling to nurse or doctor  [example](https://github.com/GaLenN3228/wellai_mobile/tree/master/examples/calls)
+- Authorization with google or apple [example](https://github.com/GaLenN3228/wellai_mobile/tree/master/examples/google_and_apple_auth)
+- Attach to doctor or nurse in calendar [example](https://github.com/GaLenN3228/wellai_mobile/tree/master/examples/calendar)
+- Profile editing [example](https://github.com/GaLenN3228/wellai_mobile/tree/master/examples/profile_editing)
 
 ## Chat with nurse or doctor
 
@@ -194,7 +194,7 @@ All work from SendMessageEvent event, when we get response from server:
 ## WebRTS calling to nurse or doctor
 
 With calling we have the same solution like with chat. We connection to Web socket whitch provide us events whitch we handling in BLoC.
-All events and their handlign are availible in [example]()
+All events and their handlign are availible in [example](https://github.com/GaLenN3228/wellai_mobile/tree/master/examples/calls)
 
 ```dart 
 _wsSubscription = _stream.listen((event) {
