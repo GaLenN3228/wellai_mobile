@@ -136,7 +136,7 @@ Because chat bloc has complicated structure, we only provide implementation in t
 
 Virtual assistant is an AI which was programmed by software engineers from the USA and provided for us. This AI is helping us to give the user more common diagnoses depending on a few questions. All questions from assistant are playing from phone speakers and user can answer from phone microphone.
 
-Code logic for assistant is pretty same as for chat. 
+Code logic for assistant is pretty same as for chat.
 
 
 ```dart
