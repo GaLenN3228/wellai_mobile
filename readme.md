@@ -3,7 +3,7 @@
 
 ## About app
 
-WellAI is an app for patients and doctors from Bent Tree Family. This is one of the best clinics in Frisco and North Dallas. The app contains a lot of features which profile in the "Features" section. We split doctor and patient roles into two apps because all functions are specified for role, it will be hard and complicated to hold all roles in one app. Because of that, app for doctor contains nurse and doctor role. At the same time doctor can be a patient with the same email. 
+WellAI is an app for patients and doctors from Bent Tree Family. This is the one of the best clinics in Frisco and North Dallas. The app contains a lot of features which are shown in the "Features" section. We split doctor and patient roles into two apps because all functions are specified for one specific role. It is quite hard and confusing having all roles in one app. Due to the previous reason, app for the doctor contains additional nurse role. Although doctor can be a patient with the same email.
 
 ## 🛠 App languages
 Mobile app: Dart and flutter<br />
