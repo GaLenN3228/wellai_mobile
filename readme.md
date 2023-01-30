@@ -100,7 +100,7 @@ and _onEvent fucntion:
   }
 ```
 
-Because chat bloc has complicated structure, we only provide implementation in this example you can find connection to chat, and listener method, which listen events from previous part.  All completed examples can be found in "Features" section:
+Due to chat bloc complex structure we only provide implementation, in this example you can find connection to chat, and listener method, which listens events from previous part. All completed examples can be found in "Features" section:
 
 ```dart
   NurseChatBloc(
