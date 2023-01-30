@@ -465,7 +465,7 @@ By tapping on date or time, we send request to server to get doctors/nurses list
 
 ## Profile editing 
 
-The most common thing in the app like in 99% of all apps is the user profile editing feature. All patients are able to change their email, phone number and other credentials. Here is a simple event in User BLoC Which sends request to server, and change user data.
+The most common thing in the app like in 99% of all apps is the user profile editing feature. All patients are able to change their email, phone number and other credentials. Here is a simple event in User BLoC Which sends request to server, and changes user data.
 
 ```dart
   FutureOr<void> _buildDataChangesProfileEvent(
