@@ -194,7 +194,7 @@ All work from SendMessageEvent event, when we get response from server:
 
 ## WebRTS calling to nurse or doctor
 
-Calling in app has the same solution like we use in chat. We connect to Web socket, Web socket provides us events which we will handle in BLoC. All events and their handlings are available.[example](https://github.com/GaLenN3228/wellai_mobile/tree/master/examples/calls)
+Calling in app has the same solution like we use in chat. We connect to Web socket, Web socket provides us events which we will handle in BLoC. All events and their handlings are available. [example](https://github.com/GaLenN3228/wellai_mobile/tree/master/examples/calls)
 
 ```dart 
 _wsSubscription = _stream.listen((event) {
@@ -252,7 +252,7 @@ Call event handling
 
 ## Authorization with google or apple
 
-Authorization with google or apple are working with firebase. All implimentations are preaty simple, we create wrappers for google and apple.
+Authorization with google or apple works with firebase. All implementations are quite simple. We just create wrappers for google and apple.
 
 Google auth wrapper:
 
@@ -379,7 +379,7 @@ And _DataStateBody
     );
 ```
 
-By tapping on date or time, we send request to server to get doctors/nurses list, whitch user can send message or request call. Sorting exanmple: 
+By tapping on date or time, we send request to server to get doctors/nurses list, which user can send message or request call. Sorting example: 
 
 ```dart
   _onInitialTelehealthScheduleEvent(InitialTelehealthScheduleEvent event,
@@ -465,7 +465,7 @@ By tapping on date or time, we send request to server to get doctors/nurses list
 
 ## Profile editing 
 
-The most common think in the app, like in 99% of all apps. It's user profile editing. All patients able to change their email, phone number and more. Here is a simple event in User BLoC. Whitch send request to server, and change user data.
+The most common thing in the app like in 99% of all apps is the user profile editing feature. All patients are able to change their email, phone number and other credentials. Here is a simple event in User BLoC Which sends request to server, and change user data.
 
 ```dart
   FutureOr<void> _buildDataChangesProfileEvent(
