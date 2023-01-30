@@ -132,11 +132,12 @@ Because chat bloc has complicated structure, we only provide implementation in t
   <img src="https://github.com/GaLenN3228/wellai_mobile/blob/master/assets/chat.gif" alt="animated" width="300" height="600"/>
 </p>
 
-## Virtual assistant to help with diagnoses
+## Virtual assistant to help you with diagnoses
 
-Virtual assistant is an AI, which is learned by programmers from the USA and provided for us. This AI is helping us to give the user more common diagnoses depending on a few questions. All questions from assistant are playing from phone speakers and user can answer from phone microphone.
+Virtual assistant is an AI which was programmed by software engineers from the USA and provided for us. This AI is helping us to give the user more common diagnoses depending on a few questions. All questions from assistant are playing from phone speakers and user can answer from phone microphone.
 
-Logic for assistant preaty the same as chat.
+Code logic for assistant is pretty same as for chat. 
+
 
 ```dart
     class AssistantBloc extends Bloc<AssistantEvent, AssistantState> {
