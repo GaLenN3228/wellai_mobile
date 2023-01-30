@@ -194,8 +194,7 @@ All work from SendMessageEvent event, when we get response from server:
 
 ## WebRTS calling to nurse or doctor
 
-With calling we have the same solution like with chat. We connection to Web socket whitch provide us events whitch we handling in BLoC.
-All events and their handlign are availible in [example](https://github.com/GaLenN3228/wellai_mobile/tree/master/examples/calls)
+Calling in app has the same solution like we use in chat. We connect to Web socket, Web socket provides us events which we will handle in BLoC. All events and their handlings are available.[example](https://github.com/GaLenN3228/wellai_mobile/tree/master/examples/calls)
 
 ```dart 
 _wsSubscription = _stream.listen((event) {
